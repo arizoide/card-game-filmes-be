@@ -23,7 +23,8 @@ public class MovieService {
 
     @Autowired
     private MovieRepository movieRepository;
-    
+
+    @Autowired
     private OMDBClient omdbClient;
 
     public MovieDto findIMDBMovie(String id){
