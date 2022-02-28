@@ -1,5 +1,6 @@
 package br.com.arithomazini.letscode.cardgamefilmes.service;
 
+import br.com.arithomazini.letscode.cardgamefilmes.client.OMDBClient;
 import br.com.arithomazini.letscode.cardgamefilmes.dto.MovieDto;
 import br.com.arithomazini.letscode.cardgamefilmes.model.Movie;
 import br.com.arithomazini.letscode.cardgamefilmes.repository.MovieRepository;
@@ -22,25 +23,20 @@ public class MovieService {
 
     @Autowired
     private MovieRepository movieRepository;
+    
+    private OMDBClient omdbClient;
 
     public MovieDto findIMDBMovie(String id){
         try {
-            RestTemplate client = new RestTemplate();
-            ResponseEntity<MovieDto> exchange = client.exchange("https://www.omdbapi.com/?apikey=78f8273b&i={id}",
-                    HttpMethod.GET, null, MovieDto.class, id);
-
-            return exchange.getBody();
+            return omdbClient.findIMDBMovie(id);
         } catch (Exception e) {
             return new MovieDto(id);
         }
     }
 
-
     public void save(Movie movie){
         movieRepository.save(movie);
     }
-
-
 
     public void fillTestData() {
         IntStream.rangeClosed(START_INCLUSIVE, MOVIES_TO_SEARCH).boxed().collect(Collectors.toList()).forEach((s) -> save(new Movie(findIMDBMovie(String.format(IMDB_PATTERN, s)))));
