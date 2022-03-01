@@ -8,7 +8,7 @@ Se você chegou até aqui para visualizar o funcionamento deste sistema, precisa
 - Inicialização do service discovery (https://github.com/arizoide/Eureka-Server)
 - Inicialização do BE (este aqui) e FE (https://github.com/arizoide/front)
 
-O projeto ainda não está completo, porém já está populando os primeiros 50 itens diretamente do site omdb (dinamicamente pelo Id).
+O projeto ainda não está completo, porém já está populando os primeiros 50 itens diretamente do site omdb (dinamicamente pelo Id), além de algumas lógicas. Também foi desenvolvido pensando no melhor desenvolvimento para escalabilidade.
 
 Os próximos passos consistem em:
 
